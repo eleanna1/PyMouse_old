@@ -178,7 +178,7 @@ class PassiveMatlab(Experiment):
     """ Passive Matlab stimulation
     """
     def __init__(self, logger, timer, params):
-        self.stim = eval(params['stim_type'])(logger, self.get_behavior())
+#        self.stim = eval(params['stim_type'])(logger, self.get_behavior())
         super(PassiveMatlab, self).__init__(logger, timer, params)
 
     def prepare(self):
