@@ -284,7 +284,7 @@ class CenterPort(Experiment):
             is_ready, ready_time = self.beh.is_ready()  # update times
 
         if self.logger.get_setup_state() == 'running':
-            print('Starting trial!')
+            print('Starting trial! Yes!')
             self.stim.init_trial(cond)
             self.beh.is_licking()
             self.timer.start()  # trial start counter
