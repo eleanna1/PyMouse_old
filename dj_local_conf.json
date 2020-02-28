@@ -1,7 +1,7 @@
 {
-    "database.host": "at-database.ad.bcm.edu",
+    "database.host": "139.91.171.210",
     "display.show_tuple_count": true,
-    "database.user": "atlab",
+    "database.user": "eflab",
     "loglevel": "INFO",
     "database.port": 3306,
     "safemode": true,
