@@ -30,4 +30,7 @@ class SetupControl(dj.Lookup):
     task="train"           : enum('train','calibrate')
     trial_done=1           : int # 0=trial running 1=trial finished
     exp_done=1             : int # 0=exp running 1=all trials done
+    sync_level1=0          : int
+    sync_level2=-1         : int
+    sync_level3=255        : int
     """

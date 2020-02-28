@@ -362,6 +362,10 @@ class PCLogger(Logger):
         exp_done = (self.SetupControl() & dict(setup=self.setup)).fetch1('exp_done')
         return exp_done
 
+    def get_sync_levels(self):
+        sync_levels = (self.SetupControl() & dict(setup=self.setup)).fetch1('level1','level2','level3')
+        return sync_levels
+
     def update_trial_done(self, state):
         (self.SetupControl() & dict(setup=self.setup))._update('trial_done', state)
 

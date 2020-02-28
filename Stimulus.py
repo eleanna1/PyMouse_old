@@ -262,6 +262,8 @@ class Psychtoolbox(Stimulus):
 
     def prepare(self):
         self.mat.stimulus.useLocalDBForControl(True, nargout=0)
+        sync_levels = self.logger.get_sync_levels()
+        self.mat.stimulus.set_sync_levels(sync_levels, nargout=0)
         protocol_file = self.logger.get_protocol_file()
         print(protocol_file)
         self.mat.stimulus.prepare(self.logger.get_scan_key(), nargout=0)
