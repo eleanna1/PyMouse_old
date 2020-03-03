@@ -345,6 +345,11 @@ class CenterPort(Experiment):
         self.beh.water_reward(probe)
 
 
+class DummyCenterPort(CenterPort):
+    def get_behavior(self):
+        return DummyProbe
+
+
 class CenterPortTrain(CenterPort):
     """Training on the 2AFC with center init position"""
 

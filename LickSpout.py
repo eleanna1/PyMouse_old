@@ -114,7 +114,8 @@ class RPProbe(Probe):
 
     def give_odor(self, odor_idx, duration, log=True):
         print('Odor %1d presentation for %d' % (odor_idx, duration))
-        self.thread.submit(self.__pulse_out, self.channels['air'][odor_idx], duration)
+        channel_indexes = list(self.channels['air'][idx] for idx in odor_idx)
+        self.thread.submit(self.__pwd_out, channel_indexes, duration)
         if log:
             self.logger.log_odor(odor_idx)
 
@@ -137,6 +138,13 @@ class RPProbe(Probe):
         else:
             ready_time = self.timer_ready.elapsed_time()
         return self.ready, ready_time
+
+    def __pwd_out(self, channel, duration, dutycycle=100, frequency=1):
+        for channel_index in channel:
+            self.GPIO.output(channel_index, self.GPIO.HIGH)
+        sleep(duration/1000)
+        for channel_index in channel:
+            self.GPIO.output(channel_index, self.GPIO.LOW)
 
     def __pulse_out(self, channel, duration):
         self.GPIO.output(channel, self.GPIO.HIGH)

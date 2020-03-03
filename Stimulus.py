@@ -32,7 +32,7 @@ class Stimulus:
         #self.screen = pygame.display.set_mode(self.size, pygame.HWSURFACE | pygame.DOUBLEBUF)
         self.unshow()
         pygame.mouse.set_visible(0)
-        pygame.display.toggle_fullscreen()
+        #pygame.display.toggle_fullscreen()
 
     def prepare(self, conditions=False):
         """prepares stuff for presentation before experiment starts"""

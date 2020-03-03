@@ -1,6 +1,7 @@
 import datajoint as dj
 
 schema = dj.schema('pipeline_behavior')
+schema2 = dj.schema('pipeline_stimulus')
 
 def erd():
     """for convenience"""
@@ -211,7 +212,7 @@ class OdorDelivery(dj.Manual):
     odor_idx=0             : int            # odor number
     """
 
-@schema
+@schema2
 class Movie(dj.Lookup):
     definition = """
     # movies used for generating clips and stills
@@ -226,15 +227,6 @@ class Movie(dj.Lookup):
     movie_description    : varchar(255)                 # full movie title
     """
 
-    class Still(dj.Part):
-        definition = """
-        # Cached still frames from the movie
-        -> Movie
-        still_id             : int                          # ids of still images from the movie
-        ---
-        still_frame          : longblob                     # uint8 grayscale movie
-        """
-
     class Clip(dj.Part):
         definition = """
         # Clips from movies
@@ -244,7 +236,6 @@ class Movie(dj.Lookup):
         file_name            : varchar(255)                 # full file name
         clip                 : longblob                     #
         """
-
 
 @schema
 class MovieClipCond(dj.Manual):
