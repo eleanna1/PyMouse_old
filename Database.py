@@ -279,3 +279,16 @@ class OdorCond(dj.Manual):
     odor_idx=0        :int          # odor index for channel mapping
     odor_name=""      :varchar(255) # name of the odor
     """
+
+@schema
+class MultiOdorCond(dj.Manual):
+    definition = """
+    # reward probe conditions
+    -> Condition
+    ---
+    odor_idx         :tinyblob          # odor index for channel mapping
+    duration         :tinyblob          # odor duration (ms)
+    odor_name        :tinyblob          # name of the odor
+    dutycycle        :tinyblob          # odor dutycycle
+    """
+

@@ -139,7 +139,7 @@ class RPLogger(Logger):
                                                                    probe=probes[cond_idx-1])))
             for condtable in condition_table:
                 self.queue.put(dict(table=condtable(), tuple=dict(cond.items() | self.session_key.items(),
-                                                                    cond_idx=cond_idx)))
+                                                                cond_idx=cond_idx)))
         self.inserter()
 
         # outputs all the condition indexes of the session

@@ -96,6 +96,7 @@ class RPProbe(Probe):
                          'liquid': {1: 15, 2: 16},
                          'lick': {1: 11, 2: 13},
                          'start': {1: 21}}  # 2
+        self.frequency = 20
         self.GPIO.add_event_detect(self.channels['lick'][2], self.GPIO.RISING, callback=self.probe2_licked, bouncetime=200)
         self.GPIO.add_event_detect(self.channels['lick'][1], self.GPIO.RISING, callback=self.probe1_licked, bouncetime=200)
         self.GPIO.add_event_detect(self.channels['start'][1], self.GPIO.BOTH, callback=self.position_change, bouncetime=50)
@@ -112,10 +113,10 @@ class RPProbe(Probe):
         if log:
             self.logger.log_liquid(probe)
 
-    def give_odor(self, odor_idx, duration, log=True):
+    def give_odor(self, odor_idx, duration, dutycycle, log=True):
         print('Odor %1d presentation for %d' % (odor_idx, duration))
-        channel_indexes = list(self.channels['air'][idx] for idx in odor_idx)
-        self.thread.submit(self.__pwd_out, channel_indexes, duration)
+        for idx in odor_idx:
+            self.thread.submit(self.__pwd_out, self.channels['air'][idx], duration[idx-1], dutycycle[idx-1])
         if log:
             self.logger.log_odor(odor_idx)
 
@@ -139,12 +140,12 @@ class RPProbe(Probe):
             ready_time = self.timer_ready.elapsed_time()
         return self.ready, ready_time
 
-    def __pwd_out(self, channel, duration, dutycycle=100, frequency=1):
-        for channel_index in channel:
-            self.GPIO.output(channel_index, self.GPIO.HIGH)
-        sleep(duration/1000)
-        for channel_index in channel:
-            self.GPIO.output(channel_index, self.GPIO.LOW)
+    def __pwd_out(self, channel, duration, dutycycle):
+        pwm = self.GPIO.PWM(channel, self.frequency)
+        pwm.ChangeFrequency(self.frequency)
+        pwm.start(dutycycle)
+        sleep(duration/1000)    # to add a  delay in seconds
+        pwm.stop()
 
     def __pulse_out(self, channel, duration):
         self.GPIO.output(channel, self.GPIO.HIGH)

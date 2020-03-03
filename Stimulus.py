@@ -312,7 +312,8 @@ class Odors(Stimulus):
     def init_trial(self, cond):
         odor_idx = self.stim_conditions[cond]['odor_idx']
         odor_dur = self.stim_conditions[cond]['odor_dur']
-        self.beh.give_odor(odor_idx, odor_dur)
+        odor_dutycycle = self.stim_conditions[cond]['odor_dutycycle']
+        self.beh.give_odor(odor_idx, odor_dur, odor_dutycycle)
         self.isrunning = True
         self.logger.start_trial(cond)  # log start trial
         return cond
@@ -322,7 +323,7 @@ class Odors(Stimulus):
         self.logger.log_trial(self.flip_count)  # log trial
 
     def get_condition_table(self):
-        return OdorCond
+        return MultiOdorCond
 
 
 class VisOlf(Stimulus):
