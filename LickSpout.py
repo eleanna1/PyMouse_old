@@ -116,7 +116,7 @@ class RPProbe(Probe):
     def give_odor(self, odor_idx, duration, dutycycle, log=True):
         #print('Odor %1d presentation for %d' % (odor_idx, duration))
         for idx in range(len(odor_idx)):
-            print('Odor %1d presentation for %d' % (idx, dutycycle[idx-1]))
+            print('Odor %1d presentation for %d' % (odor_idx[idx-1], duration[idx-1]))
             self.thread.submit(self.__pwd_out, self.channels['air'][odor_idx[idx-1]], duration[idx-1], dutycycle[idx-1])
         if log:
             self.logger.log_odor(odor_idx)
