@@ -288,7 +288,6 @@ class MultiOdorCond(dj.Manual):
     ---
     odor_idx         :tinyblob          # odor index for channel mapping
     duration         :tinyblob          # odor duration (ms)
-    odor_name        :tinyblob          # name of the odor
     dutycycle        :tinyblob          # odor dutycycle
     """
 

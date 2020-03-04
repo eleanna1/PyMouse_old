@@ -10,9 +10,9 @@ def create_conds(params):
 # define parameters
 global conditions
 
-probe1_params = {'probe': [1], 'duration': [500, 500], 'odor_idx': [[1, 2]], 'odor_name': [['test1', 'test2']],
+probe1_params = {'probe': [1], 'duration': [500, 500], 'odor_idx': [[1, 2]],
                  'dutycycle': [[100, 0], [90, 10], [80, 20], [70, 30], [60, 40], [50, 50]]}
-probe2_params = {'probe': [2], 'duration': [500, 500], 'odor_idx': [[2, 1]], 'odor_name': [['test2', 'test1']],
+probe2_params = {'probe': [2], 'duration': [500, 500], 'odor_idx': [[2, 1]],
                  'dutycycle': [[100, 0], [90, 10], [80, 20], [70, 30], [60, 40], [50, 50]]}
 
 probe1_conds = create_conds(probe1_params)
