@@ -20,7 +20,7 @@ class Probe:
         self.timer_probe2 = Timer()
         self.timer_ready = Timer()
         self.__calc_pulse_dur(logger.reward_amount)
-        self.thread = ThreadPoolExecutor(max_workers=1)
+        self.thread = ThreadPoolExecutor(max_workers=2)
 
     def give_air(self, probe, duration, log=True):
         pass
