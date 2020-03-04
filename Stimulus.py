@@ -311,8 +311,8 @@ class Odors(Stimulus):
 
     def init_trial(self, cond):
         odor_idx = self.stim_conditions[cond]['odor_idx']
-        odor_dur = self.stim_conditions[cond]['odor_dur']
-        odor_dutycycle = self.stim_conditions[cond]['odor_dutycycle']
+        odor_dur = self.stim_conditions[cond]['duration']
+        odor_dutycycle = self.stim_conditions[cond]['dutycycle']
         self.beh.give_odor(odor_idx, odor_dur, odor_dutycycle)
         self.isrunning = True
         self.logger.start_trial(cond)  # log start trial
