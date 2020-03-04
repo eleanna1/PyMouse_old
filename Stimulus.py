@@ -306,7 +306,7 @@ class Odors(Stimulus):
         self.clock = pygame.time.Clock()
         self.stim_conditions = dict()
         for cond in conditions:
-            params = (OdorCond() & dict(cond_idx=cond) & self.logger.session_key).fetch1()
+            params = (MultiOdorCond() & dict(cond_idx=cond) & self.logger.session_key).fetch1()
             self.stim_conditions[cond] = params
 
     def init_trial(self, cond):

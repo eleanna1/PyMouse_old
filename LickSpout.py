@@ -114,8 +114,9 @@ class RPProbe(Probe):
             self.logger.log_liquid(probe)
 
     def give_odor(self, odor_idx, duration, dutycycle, log=True):
-        print('Odor %1d presentation for %d' % (odor_idx, duration))
+        #print('Odor %1d presentation for %d' % (odor_idx, duration))
         for idx in odor_idx:
+            print('Odor %1d presentation for %d' % (idx, duration[idx-1]))
             self.thread.submit(self.__pwd_out, self.channels['air'][idx], duration[idx-1], dutycycle[idx-1])
         if log:
             self.logger.log_odor(odor_idx)
