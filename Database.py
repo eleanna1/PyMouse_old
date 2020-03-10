@@ -286,7 +286,8 @@ class MultiOdorCond(dj.Manual):
     # reward probe conditions
     -> Condition
     ---
-    odor_idx         :tinyblob          # odor index for channel mapping
+    delivery_probe   :tinyblob          # delivery probe for channel mapping
+    odor_idx         :tinyblob          # odor index for odor identity
     duration         :tinyblob          # odor duration (ms)
     dutycycle        :tinyblob          # odor dutycycle
     """
